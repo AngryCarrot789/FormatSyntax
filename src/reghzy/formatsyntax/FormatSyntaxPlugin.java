@@ -23,6 +23,14 @@ public class FormatSyntaxPlugin implements Annotator {
     public static final HashSet<String> ALLOWED_DESCS = new HashSet<>();
 
     static {
+        // message format... i think
+        // TODO: Add green or red to the formatted text, depending if the format
+        //  can be applied (e.g if out of range in the array, show red, otherwise green)
+        ALLOWED_DESCS.add("format(String)");
+        ALLOWED_DESCS.add("format(String, Object)");
+        ALLOWED_DESCS.add("format(String, Object...)");
+
+        // my custom logger functions
         ALLOWED_DESCS.add("splice(String, Appender)");
         ALLOWED_DESCS.add("interpolate(String, Function)");
         ALLOWED_DESCS.add("interpolate(String, Function<String, ?>)");
@@ -30,8 +38,27 @@ public class FormatSyntaxPlugin implements Annotator {
         ALLOWED_DESCS.add("interpolate(String, Map)");
         ALLOWED_DESCS.add("interpolate(String, Map<String, ?>)");
         ALLOWED_DESCS.add("interpolate(String, Map<String, Object>)");
-        ALLOWED_DESCS.add("format(String)");
-        ALLOWED_DESCS.add("format(String, Object...)");
+
+        ALLOWED_DESCS.add("logFormat(String)");
+        ALLOWED_DESCS.add("logFormat(String, Object)");
+        ALLOWED_DESCS.add("logFormat(String, Object...)");
+        ALLOWED_DESCS.add("logFormatNoPrefix(String)");
+        ALLOWED_DESCS.add("logFormatNoPrefix(String, Object)");
+        ALLOWED_DESCS.add("logFormatNoPrefix(String, Object...)");
+        ALLOWED_DESCS.add("logFormatConsole(String)");
+        ALLOWED_DESCS.add("logFormatConsole(String, Object)");
+        ALLOWED_DESCS.add("logFormatConsole(String, Object...)");
+        ALLOWED_DESCS.add("logFormatConsoleNoPrefix(String)");
+        ALLOWED_DESCS.add("logFormatConsoleNoPrefix(String, Object)");
+        ALLOWED_DESCS.add("logHeader(String)");
+        ALLOWED_DESCS.add("logHeader(String, Object)");
+        ALLOWED_DESCS.add("logHeader(String, Object...)");
+        ALLOWED_DESCS.add("logHeaderConsole(String)");
+        ALLOWED_DESCS.add("logHeaderConsole(String, Object)");
+        ALLOWED_DESCS.add("logHeaderConsole(String, Object...)");
+        ALLOWED_DESCS.add("CommandException(String)");
+        ALLOWED_DESCS.add("CommandException(String, Object)");
+        ALLOWED_DESCS.add("CommandException(String, Object...)");
     }
 
     private static final TextAttributesKey FORMAT_KEY;
@@ -136,7 +163,7 @@ public class FormatSyntaxPlugin implements Annotator {
                     if (!appendClassName(sb, params[i]));
                 }
                 sb.append(')');
-                return sb.toString().equals("format(String, Object...)");
+                return ALLOWED_DESCS.contains(sb.toString());
             }
         }
 
