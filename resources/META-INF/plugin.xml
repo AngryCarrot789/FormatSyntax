@@ -1,0 +1,23 @@
+<idea-plugin>
+    <id>formatsyntax.plugin.id</id>
+    <name>FormatSyntax</name>
+    <version>1.0</version>
+    <vendor>REghZy</vendor>
+
+    <description>
+        desc here eeeeeeeeeeeeeeeeeeeeeeeeeeeeee
+    </description>
+
+    <change-notes>
+        none
+    </change-notes>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <annotator language="JAVA" implementationClass="reghzy.formatsyntax.FormatSyntaxPlugin"/>
+    </extensions>
+
+    <actions>
+        <!-- Add your actions here -->
+    </actions>
+
+</idea-plugin>
